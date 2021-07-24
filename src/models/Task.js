@@ -1,7 +1,7 @@
 import { BaseModel } from './BaseModel';
 import { getFromStorage, addToStorage } from "../utils";
 
-export class Task extends BaseModel {
+export default class Task extends BaseModel {
   constructor (text, position, user) {
     super();
     this.text = text;

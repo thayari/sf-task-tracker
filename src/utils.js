@@ -8,9 +8,9 @@ export const addToStorage = function (obj, key) {
   localStorage.setItem(key, JSON.stringify(storageData));
 };
 
-export const removeFromStorage = function (obj, key) {
+export const removeFromStorage = function (id, key) {
   const storageData = getFromStorage(key);
-  const i = storageData.indexOf(obj);
+  const i = storageData.findIndex(item => item.id == id);
   storageData.splice(i, 1);
   localStorage.setItem(key, JSON.stringify(storageData));
 }
