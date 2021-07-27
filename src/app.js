@@ -13,14 +13,9 @@ import Interface from "./models/Interface";
 export const appState = new State();
 export const ui = new Interface();
 
+ui.initializeHeader();
 
 generateTestUser(User);
-
-// всегда быть залогиненным -->
-  // authUser("test", "qwerty123");
-  // document.querySelector("#content").innerHTML = taskFieldTemplate;
-// <-- для разработки, потом убрать
-
 
 const loginForm = document.querySelector('#app-login-form')
 loginForm.addEventListener("submit", function (e) {

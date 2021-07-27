@@ -20,10 +20,11 @@ export class User extends BaseModel {
     return false;
   }
 
-  checkIsAdmin() {
+  getUser() {
     let users = getFromStorage(this.storageKey);
     let user = users.filter((user) => user.login == this.login && user.password == this.password)[0];
     this.isAdmin = user.isAdmin;
+    return user;
   }
 
   static save(user) {

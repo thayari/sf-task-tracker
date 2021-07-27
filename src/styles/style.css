@@ -33,6 +33,10 @@
 }
 
 #user-menu {
-  top: 50px;
+  top: 36px;
   right: 0;
+}
+
+.list-group-item:hover {
+  background-color: rgb(224, 224, 224);
 }

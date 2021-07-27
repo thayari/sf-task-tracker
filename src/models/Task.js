@@ -30,11 +30,10 @@ export default class Task extends BaseModel {
   }
 
   static edit(id, text) {
-    console.log(text);
     const editTask = appState.currentTasks.find((item) => item.id == id);
     editTask.text = text;
     try {
-      updateStorageData(appState.currentTasks, 'tasks');
+      updateStorageData(editTask, 'tasks');
       return true;
     } catch (e) {
       throw new Error(e);

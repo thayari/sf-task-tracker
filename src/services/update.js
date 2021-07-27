@@ -1,8 +1,8 @@
 import { appState, ui } from "../app";
-import { getFromStorage } from "../utils";
+import { filterUserTasks } from "../utils";
 
 export const update = () => {
-  appState.currentTasks = getFromStorage('tasks');
+  appState.currentTasks = filterUserTasks(appState.currentUser.id);
   ui.generateTasks();
   appState.setTaskCount();
   ui.activeTasks.textContent = appState.taskCount.backlog;

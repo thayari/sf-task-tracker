@@ -17,13 +17,11 @@ export default class Interface {
     this.loginForm = document.querySelector("#app-login-form");
     this.activeTasks = document.querySelector('#active-tasks');
     this.finishedTasks = document.querySelector('#finished-tasks');
-    this.userInfoElem = document.querySelector('#user-info');
     this.userMenu = {
       elem: document.querySelector('#user-menu'),
       active: false,
     };
 
-    
     this.hideLoginForm();
 
     update();
@@ -46,13 +44,18 @@ export default class Interface {
       elem.addEventListener('click', this.handleDeleteBtn);
       elem.addEventListener('click', this.handleEditBtn);
     })
-    this.userInfoElem.addEventListener('click', (e) => this.handleUserInfoDropdown(e));
+    
 
     if (this.usersListElem) {
       this.usersListElem.addEventListener('click', (e) => this.handleDeleteUserBtn(e));
       document.querySelector('#users-form').addEventListener('submit', (e) => this.handleAddUserForm(e));
     }
   };
+
+  initializeHeader() {
+    this.userInfoElem = document.querySelector('#user-info');
+    this.userInfoElem.addEventListener('click', (e) => this.handleUserInfoDropdown(e));
+  }
 
   handleAddUserForm(e) {
     e.preventDefault();
@@ -214,8 +217,8 @@ export default class Interface {
     document.querySelector('#content').innerHTML = 'Please Sign In to see your tasks!';
     Interface.hideElem(this.userInfoElem);
     Interface.showElem(this.loginForm);
-    ui.activeTasks.textContent = 0;
-    ui.finishedTasks.textContent = 0;
+    this.activeTasks.textContent = 0;
+    this.finishedTasks.textContent = 0;
     this.loginForm.reset();
   }
 
