@@ -1,5 +1,6 @@
 import { BaseModel } from './BaseModel';
-import { getFromStorage, addToStorage } from "../utils";
+import { appState } from '../app';
+import { updateStorageData, addToStorage, removeFromStorage } from "../utils";
 
 export default class Task extends BaseModel {
   constructor (text, position, user) {
@@ -12,7 +13,28 @@ export default class Task extends BaseModel {
 
   static save(task) {
     try {
-      addToStorage(task, task.storageKey);
+      addToStorage(task, 'tasks');
+      return true;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  static delete(id) {
+    try {
+      removeFromStorage(id, 'tasks');
+      return true;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  static edit(id, text) {
+    console.log(text);
+    const editTask = appState.currentTasks.find((item) => item.id == id);
+    editTask.text = text;
+    try {
+      updateStorageData(appState.currentTasks, 'tasks');
       return true;
     } catch (e) {
       throw new Error(e);

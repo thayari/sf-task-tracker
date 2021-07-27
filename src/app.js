@@ -3,7 +3,8 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import "./styles/style.css";
 import taskFieldTemplate from "./templates/taskField.html";
 import noAccessTemplate from "./templates/noAccess.html";
-import { getFromStorage, generateTestUser, removeFromStorage, addToStorage } from './utils';
+import adminFieldTemplate from "./templates/adminField.html";
+import { generateTestUser } from './utils';
 import { User } from "./models/User";
 import { State } from "./state";
 import { authUser } from "./services/auth";
@@ -12,19 +13,16 @@ import Interface from "./models/Interface";
 export const appState = new State();
 export const ui = new Interface();
 
-const loginForm = document.querySelector("#app-login-form");
 
 generateTestUser(User);
 
 // всегда быть залогиненным -->
-  authUser("test", "qwerty123");
-  document.querySelector("#content").innerHTML = taskFieldTemplate;
+  // authUser("test", "qwerty123");
+  // document.querySelector("#content").innerHTML = taskFieldTemplate;
 // <-- для разработки, потом убрать
 
-ui.init();
 
-
-
+const loginForm = document.querySelector('#app-login-form')
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = new FormData(loginForm);
@@ -36,4 +34,11 @@ loginForm.addEventListener("submit", function (e) {
     : noAccessTemplate;
 
   document.querySelector("#content").innerHTML = fieldHTMLContent;
+
+  if (appState.currentUser.isAdmin) {
+    document.querySelector("#content").insertAdjacentHTML('afterbegin', adminFieldTemplate);
+  }
+  
+  ui.init();
+
 });

@@ -1,3 +1,38 @@
 #app-login-btn {
   width: 160px;
 }
+
+.app-column {
+  background-color: rgb(221, 221, 226);
+}
+
+.app-task__icon {
+  opacity: 50%;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.app-task__icon:hover {
+  opacity: 80%;
+  transition: 0.1s;
+}
+
+
+#user-info {
+  position: relative;
+  cursor: pointer;
+}
+#dropdown-arrow {
+  transform: rotate(0deg);
+  transition: 0.2s;
+}
+
+#dropdown-arrow.active {
+  transform: rotate(180deg);
+  transition: 0.2s;
+}
+
+#user-menu {
+  top: 50px;
+  right: 0;
+}

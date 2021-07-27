@@ -8,6 +8,10 @@ export const addToStorage = function (obj, key) {
   localStorage.setItem(key, JSON.stringify(storageData));
 };
 
+export const updateStorageData = function (storageData, key) {
+  localStorage.setItem(key, JSON.stringify(storageData));
+}
+
 export const removeFromStorage = function (id, key) {
   const storageData = getFromStorage(key);
   const i = storageData.findIndex(item => item.id == id);
@@ -17,6 +21,8 @@ export const removeFromStorage = function (id, key) {
 
 export const generateTestUser = function (User) {
   localStorage.clear();
-  const testUser = new User("test", "qwerty123");
+  const testUser = new User("test", "qwerty123", false);
+  const testAdmin = new User("admin", "admin", true);
   User.save(testUser);
+  User.save(testAdmin);
 };
